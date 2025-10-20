@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clickable Heart</title>
+  <title>Clickable Heart with Multiple Messages</title>
   <style>
     body {
       display: flex;
@@ -19,7 +19,7 @@
       position: relative;
       width: 100px;
       height: 100px;
-      background-color: red;
+      background-color: rgba(214, 60, 135, 0.995);
       transform: rotate(-45deg);
       cursor: pointer;
       transition: transform 0.3s ease;
@@ -59,9 +59,11 @@
     #message {
       margin-top: 30px;
       font-size: 1.5rem;
-      color: #d6336c;
+      color: #090809;
       opacity: 0;
       transition: opacity 0.5s ease;
+      text-align: center;
+      max-width: 80%;
     }
 
     #message.show {
@@ -71,16 +73,36 @@
 </head>
 <body>
   <div class="heart" id="heart"></div>
-  <div id="message">You clicked my heart 💘</div>
+  <div id="message"></div>
 
   <script>
     const heart = document.getElementById("heart");
     const message = document.getElementById("message");
 
+    // ✨ Add your custom messages here
+    const messages = [
+      "You're my favorite person!",
+      "I love you sooo much",
+      "You're beautiful!!",
+      "Talking to you makes my day",
+      "My heart beats for you",
+      "You're my person"
+    ];
+
+    let messageIndex = 0;
+
     heart.addEventListener("click", () => {
+      // Trigger heart pop animation
       heart.classList.add("clicked");
+
+      // Update message text
+      message.textContent = messages[messageIndex];
       message.classList.add("show");
 
+      // Cycle to next message
+      messageIndex = (messageIndex + 1) % messages.length;
+
+      // Remove heart pop animation after a short delay
       setTimeout(() => {
         heart.classList.remove("clicked");
       }, 300);
