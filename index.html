@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clickable Heart</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #f9b4c8, #fddde6);
+      font-family: Arial, sans-serif;
+    }
+
+    .heart {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      transform: rotate(-45deg);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    .heart.clicked {
+      transform: rotate(-45deg) scale(1.2);
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.4); }
+      100% { transform: rotate(-45deg) scale(1.2); }
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 1.5rem;
+      color: #d6336c;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #message.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="heart" id="heart"></div>
+  <div id="message">You clicked my heart 💘</div>
+
+  <script>
+    const heart = document.getElementById("heart");
+    const message = document.getElementById("message");
+
+    heart.addEventListener("click", () => {
+      heart.classList.add("clicked");
+      message.classList.add("show");
+
+      setTimeout(() => {
+        heart.classList.remove("clicked");
+      }, 300);
+    });
+  </script>
+</body>
+</html>
