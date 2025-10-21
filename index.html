@@ -12,7 +12,7 @@
       justify-content: center;
       height: 100vh;
       background: linear-gradient(to bottom right, #f9b4c8, #fddde6);
-      font-family: Arial, sans-serif;
+      font-family: "Times New Roman", Times, serif;
     }
 
     .heart {
@@ -31,7 +31,7 @@
       position: absolute;
       width: 100px;
       height: 100px;
-      background-color: red;
+      background-color: rgb(219, 73, 136);
       border-radius: 50%;
     }
 
@@ -59,18 +59,27 @@
     #message {
       margin-top: 30px;
       font-size: 1.5rem;
-      color: #d6336c;
+      color: #070606;
       opacity: 0;
       transition: opacity 0.5s ease;
-
+      font-family: "Times New Roman", Times, serif;
     }
 
     #message.show {
       opacity: 1;
     }
+    .prompt {
+      margin-bottom: 40px;
+      margin-top: -60px;
+      font-size: 1.2rem;
+      color: #000000;
+      text-align: center;
+      font-family: "Times New Roman", Times, serif;
+    }
   </style>
 </head>
 <body>
+  <div class="prompt">Click the heart!</div>
   <div class="heart" id="heart"></div>
   <div id="message"></div>
 
@@ -78,7 +87,7 @@
     const heart = document.getElementById("heart");
     const message = document.getElementById("message");
 
-    // ✨ Array of lovely messages
+    // Array of messages
     const messages = [
       "You're my favorite person!",
       "I love you so much",
